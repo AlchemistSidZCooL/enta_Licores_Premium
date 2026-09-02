@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Pérignon Luminous Edition | Colección Privada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #08060c;
+            --surface-color: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(0, 255, 157, 0.3);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --neon-green: #00ff9d;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at 15% 50%, rgba(0, 255, 157, 0.06), transparent 35%);
+        }
+        .navbar { padding: 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .navbar a { color: var(--gold); text-decoration: none; font-weight: 600; font-family: 'Playfair Display', serif; }
+        .product-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        
+        .product-image { position: relative; border-radius: 16px; overflow: hidden; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 2rem; box-shadow: 0 0 35px rgba(0, 255, 157, 0.15); }
+        .product-image img { max-width: 100%; max-height: 65vh; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.9)); transition: all 0.4s ease; }
+        
+        .toggle-container { margin-top: 1.5rem; display: flex; gap: 10px; z-index: 2; }
+        .btn-toggle { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .btn-toggle.active { background: var(--neon-green); color: #000; border-color: var(--neon-green); box-shadow: 0 0 15px rgba(0,255,157,0.5); }
+
+        .badge-luxury { display: inline-block; background: rgba(0, 255, 157, 0.15); color: var(--neon-green); border: 1px solid var(--neon-green); padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 1rem; text-transform: uppercase; }
+        .product-details h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: #fff; margin-bottom: 0.5rem; line-height: 1.1; }
+        .product-details h2 { font-size: 1.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .price { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold-light); margin-bottom: 2rem; display: flex; align-items: baseline; gap: 1rem; }
+        .price strike { font-size: 1.3rem; color: var(--text-muted); }
+        .description { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+        .features { list-style: none; margin-bottom: 3rem; }
+        .features li { margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; color: #e0e0e0; }
+        .features i { color: var(--neon-green); }
+        .btn { display: inline-block; padding: 1.1rem 3.5rem; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #000; text-decoration: none; font-weight: 900; border-radius: 30px; letter-spacing: 1.5px; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6); }
+        @media (max-width: 768px) { .product-container { grid-template-columns: 1fr; gap: 2rem; } .product-details h1 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Volver al Catálogo</a>
+        <span>Colección Privada</span>
+    </nav>
+    <main class="product-container">
+        <div class="product-image">
+            <img id="dom-img" src="img/dom_perignon.png" alt="Dom Pérignon Luminous Edition" style="border-radius: 8px;">
+        </div>
+        <div class="product-details">
+            <span class="badge-luxury"><i class="fas fa-bolt"></i> Edición Especial Luminous</span>
+            <h2>Champagne de Prestigio</h2>
+            <h1>Dom Pérignon Luminous</h1>
+            <div class="price">220€ <strike>310.00€</strike></div>
+            <p class="description">La icónica y exclusiva edición <strong>Luminous</strong> de Dom Pérignon, equipada con el escudo frontal iluminado por LED mediante pulsador estanco en la base. Una pieza de altísimo valor para coleccionistas, eventos VIP y amantes del champagne más exclusivo del mundo.</p>
+            <ul class="features">
+                <li><i class="fas fa-check-circle"></i> Botella 100% Original, Precintada y con LED Operativo</li>
+                <li><i class="fas fa-wine-bottle"></i> 750ml / Edición Luminous Vintage</li>
+                <li><i class="fas fa-shield-halved"></i> Conservada en bodega climatizada óptima</li>
+                <li><i class="fas fa-handshake"></i> Entrega en mano y trato directo en Madrid Centro</li>
+            </ul>
+            <a href="https://wa.me/34641868620?text=Hola,%20estoy%20interesado%20en%20comprar%20la%20botella%20de%20Dom%20Pérignon%20Luminous%20por%20160€." class="btn">
+                <i class="fab fa-whatsapp"></i> RESERVAR AHORA
+            </a>
+        </div>
+    </main>
+
+    <script>
+        function switchLight(state) {
+            const img = document.getElementById('dom-img');
+            const btns = document.querySelectorAll('.btn-toggle');
+            btns.forEach(b => b.classList.remove('active'));
+            if (state === 'on') {
+                img.src = 'assets/dom_perignon_on.png';
+                btns[0].classList.add('active');
+            } else {
+                img.src = 'assets/dom_perignon_off.png';
+                btns[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

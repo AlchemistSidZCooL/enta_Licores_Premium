@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belvedere Vodka | Colección Privada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-color: #0d0a14; --surface-color: rgba(255, 255, 255, 0.03); --border-color: rgba(212, 175, 55, 0.2); --gold: #d4af37; --gold-light: #f3e5ab; --text-main: #f0f0f0; --text-muted: #a0a0a0; --accent: #a3c9e6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg-color); color: var(--text-main); background-image: radial-gradient(circle at 15% 50%, rgba(163, 201, 230, 0.08), transparent 35%); }
+        .navbar { padding: 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); }
+        .navbar a { color: var(--gold); text-decoration: none; font-weight: 600; font-family: 'Playfair Display', serif; }
+        .product-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .product-image { position: relative; border-radius: 12px; overflow: hidden; background: var(--surface-color); border: 1px solid var(--border-color); display: flex; justify-content: center; padding: 2rem; }
+        .product-image img { max-width: 100%; max-height: 70vh; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8)); border-radius: 8px; }
+        .product-details h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #fff; margin-bottom: 0.5rem; }
+        .product-details h2 { font-size: 1.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+        .price { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold-light); margin-bottom: 2rem; }
+        .description { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+        .features { list-style: none; margin-bottom: 3rem; }
+        .features li { margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; color: #e0e0e0; }
+        .features i { color: var(--gold); }
+        .btn { display: inline-block; padding: 1rem 3rem; background: var(--gold); color: #000; text-decoration: none; font-weight: 800; border-radius: 30px; letter-spacing: 1px; transition: transform 0.3s; }
+        .btn:hover { transform: scale(1.05); }
+        @media (max-width: 768px) { .product-container { grid-template-columns: 1fr; gap: 2rem; } .product-details h1 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><a href="index.html"><i class="fas fa-arrow-left"></i> Volver al Catálogo</a><span>Colección Privada</span></nav>
+    <main class="product-container">
+        <div class="product-image"><img src="img/belvedere.png" alt="Belvedere Vodka"></div>
+        <div class="product-details">
+            <h2>Vodka Premium</h2>
+            <h1>Belvedere Vodka</h1>
+            <div class="price">33€ <strike style="font-size: 1.2rem; color: var(--text-muted); margin-left: 1rem;">38€</strike></div>
+            <p class="description">El primer vodka súper premium del mundo. Elaborado a partir de centeno polaco puro y agua prístina, destacando su carácter sedoso y un final impecablemente limpio.</p>
+            <ul class="features">
+                <li><i class="fas fa-check-circle"></i> Botella 100% Original Precintada</li>
+                <li><i class="fas fa-wine-bottle"></i> 70cl / 40% Vol.</li>
+                <li><i class="fas fa-truck-fast"></i> Entrega en Madrid Centro</li>
+            </ul>
+            <a href="https://wa.me/34641868620?text=Hola,%20me%20interesa%20el%20vodka%20Belvedere%20por%2033€." class="btn"><i class="fab fa-whatsapp"></i> RESERVAR AHORA</a>
+        </div>
+    </main>
+</body>
+</html>

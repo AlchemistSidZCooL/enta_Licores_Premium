@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recortador de Botellas</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a2e; color: white; padding: 20px; text-align: center; }
+        #canvas-container { position: relative; display: inline-block; margin-top: 20px; border: 2px solid #d4af37; cursor: crosshair; }
+        canvas { display: block; max-width: 1000px; }
+        .controls { margin-bottom: 20px; }
+        select, button, input { padding: 10px; font-size: 16px; margin: 5px; }
+        button { background: #d4af37; border: none; color: black; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #f3e5ab; }
+    </style>
+</head>
+<body>
+    <h2>Herramienta para Recortar Botellas Individuales</h2>
+    <p>1. Carga una de las fotos grupales (guárdala en tu PC primero). <br>2. Haz clic y arrastra para dibujar un rectángulo alrededor de la botella.<br>3. Ponle nombre y dale a "Descargar Recorte".</p>
+    
+    <div class="controls">
+        <input type="file" id="imageLoader" accept="image/*">
+        <br><br>
+        <input type="text" id="filename" placeholder="Nombre (ej: zacapa.jpg)">
+        <button id="btn-crop">Descargar Recorte</button>
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        const imageLoader = document.getElementById('imageLoader');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const btnCrop = document.getElementById('btn-crop');
+        const filenameInput = document.getElementById('filename');
+
+        let img = new Image();
+        let startX, startY, isDrawing = false, rectWidth, rectHeight;
+        let imageScale = 1;
+
+        imageLoader.addEventListener('change', handleImage, false);
+
+        function handleImage(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                img.onload = function() {
+                    let maxWidth = 1000;
+                    imageScale = img.width > maxWidth ? maxWidth / img.width : 1;
+                    canvas.width = img.width * imageScale;
+                    canvas.height = img.height * imageScale;
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            startX = e.clientX - rect.left;
+            startY = e.clientY - rect.top;
+            isDrawing = true;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const currentX = e.clientX - rect.left;
+            const currentY = e.clientY - rect.top;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            
+            rectWidth = currentX - startX;
+            rectHeight = currentY - startY;
+            
+            ctx.strokeStyle = '#25d366';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(startX, startY, rectWidth, rectHeight);
+            ctx.fillStyle = 'rgba(37, 211, 102, 0.2)';
+            ctx.fillRect(startX, startY, rectWidth, rectHeight);
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+
+        btnCrop.addEventListener('click', () => {
+            if (rectWidth && rectHeight) {
+                const cropCanvas = document.createElement('canvas');
+                const cropCtx = cropCanvas.getContext('2d');
+                
+                const realX = startX / imageScale;
+                const realY = startY / imageScale;
+                const realW = rectWidth / imageScale;
+                const realH = rectHeight / imageScale;
+
+                cropCanvas.width = Math.abs(realW);
+                cropCanvas.height = Math.abs(realH);
+
+                const sourceX = realW < 0 ? realX + realW : realX;
+                const sourceY = realH < 0 ? realY + realH : realY;
+
+                cropCtx.drawImage(img, sourceX, sourceY, Math.abs(realW), Math.abs(realH), 0, 0, Math.abs(realW), Math.abs(realH));
+                
+                let name = filenameInput.value.trim();
+                if(!name) name = "botella_recortada.jpg";
+                if(!name.endsWith('.jpg') && !name.endsWith('.png')) name += '.jpg';
+
+                const link = document.createElement('a');
+                link.download = name;
+                link.href = cropCanvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+            } else {
+                alert("Primero dibuja un recuadro sobre la botella.");
+            }
+        });
+    </script>
+</body>
+</html>

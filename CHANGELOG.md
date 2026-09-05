@@ -2,6 +2,14 @@
 
 Todas las modificaciones del proyecto "Venta Licores Premium" están documentadas en este archivo.
 
+## [1.3.0] - 2026-09-05
+### 🚀 Despliegue en Producción & Actualización de Catálogo
+- **Despliegue Netlify:** Configuración e integración con GitHub para despliegue continuo en `licorespremium.netlify.app`.
+- **Ajustes UI (Móvil/Desktop):** Inyección de reglas CSS para ocultar el badge de Netlify. Botón flotante de WhatsApp reubicado al lado izquierdo para mejor usabilidad.
+- **Actualización de Stock:** 
+  - Eliminados: *Flor de Caña 7 Años* y *Bombay Dry Gin* (Stock agotado/Vendido).
+  - Añadido: *Martin Miller's Gin* en catálogo principal (22€).
+
 ## [1.2.0] - 2026-08-23
 ### 🎨 Procesamiento Visual & Renders de Estudio (Actualización Completa)
 - **Aislamiento de Botellas Individuales:** Se eliminaron las fotos grupales y las fotos con manos del catálogo principal y de las páginas de producto.
